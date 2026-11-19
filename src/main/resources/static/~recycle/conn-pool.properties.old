@@ -1,0 +1,14 @@
+# 旧连接池参数，2025-11 调优后废弃
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://10.20.30.9:3306/yunshu_oa_old
+jdbc.username=yunshu_old
+jdbc.password=Old#Db2025!
+pool.maxActive=50
+
+# 报表库（只读）
+report.jdbc.url=jdbc:mysql://10.20.30.15:3306/yunshu_report
+report.jdbc.username=report_ro
+report.jdbc.password=Rpt@2025ro
+
+# 老版本接口签名盐值，兼容期保留
+legacy.sign.salt=ys0a#2019$salt

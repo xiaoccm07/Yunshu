@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 旧 IIS 反向代理配置，迁移 nginx 后停用 -->
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="YunshuProxy" stopProcessing="true">
+          <match url="(.*)" />
+          <action type="Rewrite" url="http://10.20.30.11:8080/{R:1}" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+  <connectionStrings>
+    <add name="YunshuOldDb" connectionString="Server=10.20.30.9;Database=yunshu_oa_old;Uid=sa;Pwd=SqlSvr@2019#yunshu;" />
+  </connectionStrings>
+  <appSettings>
+    <add key="LegacyApiKey" value="ak_live_7f3d9c2e8b1a4056" />
+    <add key="FtpBackupUser" value="ysbackup" />
+    <add key="FtpBackupPwd" value="Ftp#Bak2025!" />
+  </appSettings>
+</configuration>

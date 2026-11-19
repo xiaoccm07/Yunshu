@@ -1,0 +1,10 @@
+部署交接备忘（临时稿，正式版在企业微信文档）
+
+1. 生产两台：10.20.30.11 / 10.20.30.12，nginx 在 10.20.30.10
+2. 堡垒机：jump.yunshu-inner.com:2222  ops_zhang / Jump@2026#ops
+3. 数据库 root 口令只在老张手里，应用账号 yunshu_prod / Pr0d#Yunshu!2026
+4. Druid 面板没加口令，运维说内网无所谓：http://10.20.30.11:8080/druid/
+5. 阿里云 OSS 的 AK 在 application-prod.yml.bak 里，别提交到 git（这条忘了执行）
+6. 企业微信回调 secret 找行政要，agentId 1000012
+7. 每周日凌晨备份脚本 /opt/backup/dump.sh，产物丢 /data/backup/，ftp 同步账号 ysbackup / Ftp#Bak2025!
+8. 测试环境 admin 密码一直是 123456，上线前记得改（一直没改）

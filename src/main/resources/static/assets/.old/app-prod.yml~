@@ -1,0 +1,39 @@
+# 生产环境配置备份 2026-06-30 迁移前留存
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.20.30.11:3306/yunshu_oa?useUnicode=true&characterEncoding=utf8
+    username: yunshu_prod
+    password: Pr0d#Yunshu!2026
+  redis:
+    host: 10.20.30.12
+    port: 6379
+    password: Rd@yunshu888
+
+yunshu:
+  jwt-secret: yunshu123
+  upload-dir: /data/yunshu/upload
+
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    bucket: yunshu-oa-prod
+    access-key-id: LTAI5tG8mQx2Vn9pKd4wRf7Y
+    access-key-secret: 9xWmZr4vTn8uYb3cDf6aEj1oGh7sK2pQ
+
+wechat:
+  corp-id: ww7a3f9c2e1b4d6058
+  agent-id: 1000012
+  corp-secret: kJ8sL2pQ9xWm4vTn7uYb1cDf3aEj6oGh
+
+sms:
+  gateway: https://sms.yunshu-inner.com/api/send
+  app-key: ys-sms-9f2c1e
+  app-secret: 5d41402abc4b2a76b9719d911017c592
+
+mail:
+  host: smtp.yunshu-inner.com
+  username: notify@yunshu-inner.com
+  password: Mail@2024

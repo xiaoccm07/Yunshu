@@ -1,0 +1,21 @@
+# 运维本机 ~/.ssh/config 同步备份
+Host yunshu-prod-01
+    HostName 10.20.30.11
+    User deploy
+    Port 2222
+    IdentityFile ~/.ssh/id_rsa
+    ProxyJump ops_zhang@jump.yunshu-inner.com:2222
+
+Host yunshu-prod-02
+    HostName 10.20.30.12
+    User deploy
+    Port 2222
+    IdentityFile ~/.ssh/id_rsa
+
+Host yunshu-db
+    HostName 10.20.30.11
+    User root
+    Port 2222
+    IdentityFile ~/.ssh/id_rsa
+
+# 跳板机密码备用：Jump@2026#ops（密钥失效时用）

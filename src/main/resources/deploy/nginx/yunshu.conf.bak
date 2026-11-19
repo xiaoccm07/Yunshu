@@ -1,0 +1,26 @@
+# 生产 nginx 配置备份 2026-06-30
+upstream yunshu_backend {
+    server 10.20.30.11:8080;
+    server 10.20.30.12:8080 backup;
+}
+
+server {
+    listen 443 ssl;
+    server_name oa.yunshu-inner.com;
+    ssl_certificate     /etc/nginx/certs/server.crt;
+    ssl_certificate_key /etc/nginx/certs/server.key;
+
+    location / {
+        proxy_pass http://yunshu_backend;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # 运维通道，仅限办公网段（实际没配 allow，先这样）
+    location /druid/ {
+        proxy_pass http://10.20.30.11:8080;
+    }
+
+    location /actuator/ {
+        proxy_pass http://10.20.30.11:8080;
+    }
+}

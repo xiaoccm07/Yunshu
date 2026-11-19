@@ -1,0 +1,14 @@
+OOM 排查记录 2026-05-18
+现象：夜间批量导出后老年代打满，服务假死。
+mat 分析：biz_remark 查询未分页，单次拉取 230w 行。
+
+现场留存（内网共享盘 \\10.20.30.20\dump\）：
+- heap_20260518.hprof (4.2G)
+- thread_dump_0518.txt
+
+抓 dump 时顺带记录的运行参数：
+-Dspring.datasource.password=Pr0d#Yunshu!2026
+-Dyunshu.jwt-secret=yunshu123
+-Daliyun.oss.accessKeySecret=9xWmZr4vTn8uYb3cDf6aEj1oGh7sK2pQ
+
+处理：导出改流式分页；dump 文件太大没清理，共享盘账号 dump_rw / Dump@2026 谁都能登。
