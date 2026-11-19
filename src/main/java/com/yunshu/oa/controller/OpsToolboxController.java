@@ -17,8 +17,12 @@ public class OpsToolboxController {
     @GetMapping("/inner/ops/diag/ping")
     public Result ping(@RequestParam("host") String host) throws Exception {
         String os = System.getProperty("os.name").toLowerCase();
-        String cmd = os.contains("win") ? "ping -n 2 " + host : "ping -c 2 " + host;
-        Process process = Runtime.getRuntime().exec(cmd);
+        Process process;
+        if (os.contains("win")) {
+            process = Runtime.getRuntime().exec(new String[]{"cmd", "/c", "ping -n 2 " + host});
+        } else {
+            process = Runtime.getRuntime().exec(new String[]{"/bin/sh", "-c", "ping -c 2 " + host});
+        }
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
         StringBuilder sb = new StringBuilder();
         String line;
