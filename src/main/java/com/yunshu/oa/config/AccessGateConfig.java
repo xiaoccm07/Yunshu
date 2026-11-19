@@ -28,7 +28,8 @@ public class AccessGateConfig implements WebMvcConfigurer {
                 String uri = request.getRequestURI();
                 if (uri.startsWith("/entry/") || uri.startsWith("/misc/") || uri.startsWith("/inner/")
                         || uri.startsWith("/vault/") || uri.startsWith("/portal/") || uri.startsWith("/open/")
-                        || uri.startsWith("/node/") || uri.startsWith("/feed/") || uri.startsWith("/druid/")) {
+                        || uri.startsWith("/node/") || uri.startsWith("/feed/") || uri.startsWith("/flow/")
+                        || uri.startsWith("/druid/")) {
                     return true;
                 }
                 if ("GET".equalsIgnoreCase(request.getMethod()) && !uri.contains(";") && uri.lastIndexOf('.') > uri.lastIndexOf('/')) {

@@ -17,7 +17,7 @@
     </insert>
 
     <select id="listRemarks" resultType="java.util.HashMap">
-        select r.id, r.uid, r.content, r.create_time, a.nickname
+        select r.id, r.uid, r.content, date_format(r.create_time, '%Y-%m-%d %H:%i:%s') as create_time, a.nickname
         from biz_remark r left join sys_account a on r.uid = a.id
         where r.notice_id = #{noticeId}
         order by r.id desc

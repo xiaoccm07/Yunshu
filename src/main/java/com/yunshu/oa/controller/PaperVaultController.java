@@ -34,7 +34,7 @@ public class PaperVaultController {
         }
         String name = file.getOriginalFilename();
         File target = new File(dir, name);
-        file.transferTo(target);
+        Files.copy(file.getInputStream(), target.toPath());
         Map<String, Object> data = new HashMap<>();
         data.put("url", "/upload/" + name);
         data.put("size", file.getSize());
