@@ -10,3 +10,7 @@ logs/
 *.log
 app.log
 *.log
+static/upload/
+data/
+export/
+app.log
