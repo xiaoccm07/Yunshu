@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunshu.oa.dao.FlowInstanceMapper">
+
+    <insert id="insert" parameterType="com.yunshu.oa.entity.FlowInstance" useGeneratedKeys="true" keyProperty="id">
+        insert into flow_instance (title, form_data, applicant_id, status, create_time)
+        values (#{title}, #{formData}, #{applicantId}, #{status}, now())
+    </insert>
+
+    <select id="findById" resultType="com.yunshu.oa.entity.FlowInstance">
+        select * from flow_instance where id = #{id}
+    </select>
+
+    <select id="listByApplicant" resultType="com.yunshu.oa.entity.FlowInstance">
+        select * from flow_instance where applicant_id = #{applicantId}
+        order by ${order}
+    </select>
+
+    <update id="updateStatus">
+        update flow_instance set status = #{status} where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunshu.oa.dao.SysAccountMapper">
+
+    <select id="findByAccount" resultType="com.yunshu.oa.entity.SysAccount">
+        select * from sys_account where account = #{account} limit 1
+    </select>
+
+    <select id="findById" resultType="com.yunshu.oa.entity.SysAccount">
+        select * from sys_account where id = #{id}
+    </select>
+
+    <select id="search" resultType="com.yunshu.oa.entity.SysAccount">
+        select id, account, nickname, phone, role_id, dept_id, status, create_time
+        from sys_account
+        <where>
+            <if test="keyword != null and keyword != ''">
+                (nickname like '%${keyword}%' or account like '%${keyword}%')
+            </if>
+        </where>
+        order by ${sort}
+    </select>
+
+    <update id="updatePwd">
+        update sys_account set pwd = #{pwd} where account = #{account}
+    </update>
+
+    <update id="updateProfile" parameterType="com.yunshu.oa.entity.SysAccount">
+        update sys_account
+        <set>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="roleId != null">role_id = #{roleId},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

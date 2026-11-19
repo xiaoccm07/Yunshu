@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunshu.oa.dao.BizNoticeMapper">
+
+    <insert id="insert" parameterType="com.yunshu.oa.entity.BizNotice" useGeneratedKeys="true" keyProperty="id">
+        insert into biz_notice (title, content, author_id, top, create_time)
+        values (#{title}, #{content}, #{authorId}, 0, now())
+    </insert>
+
+    <select id="findById" resultType="com.yunshu.oa.entity.BizNotice">
+        select * from biz_notice where id = #{id}
+    </select>
+
+    <insert id="insertRemark">
+        insert into biz_remark (notice_id, uid, content, create_time)
+        values (#{noticeId}, #{uid}, #{content}, now())
+    </insert>
+
+    <select id="listRemarks" resultType="java.util.HashMap">
+        select r.id, r.uid, r.content, r.create_time, a.nickname
+        from biz_remark r left join sys_account a on r.uid = a.id
+        where r.notice_id = #{noticeId}
+        order by r.id desc
+    </select>
+</mapper>
